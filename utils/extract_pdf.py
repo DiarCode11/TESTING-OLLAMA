@@ -1,4 +1,5 @@
 import pdfplumber
+from PyPDF2 import PdfReader
 import sys
 import re
 
@@ -20,6 +21,7 @@ def read_pdf(file_path):
                 text += page_text
         
         return text
+
     
 def get_abstract(text):
     try:
@@ -68,12 +70,13 @@ def get_keyword(text):
     except Exception as e:
         print(f"Gagal menemukan kata kunci: {str(e)}")
 
-for i in range(0, 99):
-    # Contoh penggunaan
-    file_path = f"PDF\JPTK-{i}.pdf"
-    pdf_text = read_pdf(file_path)
-    teks = get_keyword(pdf_text)
-    print(f"{i} : {teks}")
+# for i in range(0, 95):
+#     # Contoh penggunaan
+#     file_path = f"PDF\JPTK-{i}.pdf"
+#     pdf_text = read_pdf(file_path)
+#     teks = get_keyword(pdf_text)
+#     print(f"{i} : {teks}")
 
-# text = read_pdf('PDF\JPTK-77.pdf')
-# print(text)
+text = read_pdf('PDF\JPTK-5.pdf')
+ekstrak = get_keyword(text)
+print(f'{text}\n\n{ekstrak}')
