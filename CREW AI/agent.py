@@ -57,5 +57,5 @@ def write_blog(topic, llm):
   result = crew.kickoff()
   return result
 
-response = write_blog('konsep blockchain pada marketplace', llm)
+response = write_blog('apa itu cincin api megatrust', llm)
 print(response)

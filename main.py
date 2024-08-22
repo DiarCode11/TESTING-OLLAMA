@@ -1,10 +1,17 @@
-import fitz  # PyMuPDF
+from langchain_community.document_loaders import OnlinePDFLoader
+import sys
 
-# Buka file PDF
-doc = fitz.open("PDF/JPTK-10.pdf")
 
-# Iterasi melalui halaman-halaman
-for page_num in range(len(doc)):
-    page = doc.load_page(page_num)
-    text = page.get_text("text")  # Mendapatkan teks dengan struktur paragraf
-    print(text)
+# Set encoding ke UTF-8
+sys.stdout.reconfigure(encoding='utf-8')
+
+# URL file PDF
+url = "https://ejournal.undiksha.ac.id/index.php/JPI/article/download/1409/1270"
+
+# Menginisialisasi OnlinePDFLoader dengan URL PDF
+loader = OnlinePDFLoader(url)
+
+# Mengambil konten dari PDF
+documents = loader.load()
+
+print(documents[0].page_content)
